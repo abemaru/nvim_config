@@ -1,45 +1,43 @@
+local vim = vim
+
+local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.vim"
+-- ensure that packer is installed
+local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.vim"
 if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	print("Installing packer...")
-	vim.cmd([[packadd packer.nvim]])
+	execute("!git clone https://github.com/wbthomason/packer.nvim "..install_path)
+	execute "packadd packer.nvim"
 end
 
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
+vim.cmd("packadd packer.nvim")
 
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
-end
+local packer = require"packer"
+local util = require"packer.util"
 
 packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
+	package_root = util.join_paths(vim.fn.stdpath("data"), "site", "pack")
 })
 
-return packer.startup(function(use)
-	use({ "wbthomason/packer.nvim" })
 
-	use({ "wakatime/vim-wakatime" })
+packer.startup(function()
+	local use = use
+	use "wbthomason/packer.nvim"
 
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
+	-- color
+	use "EdenEast/nightfox.nvim"
+
+	-- theme
+	use "kyazdani42/nvim-web-devicons"
+	use "kyazdani42/nvim-tree.lua"
+
+	-- wakatime
+	use "wakatime/vim-wakatime"
 end)
+
+
+-- setups for nvim-tree
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+require("nvim-tree").setup()
+

@@ -1,5 +1,5 @@
 require("base")
-require("autocmds")
 require("options")
 require("plugins")
+require("color")
 print("lua!")
