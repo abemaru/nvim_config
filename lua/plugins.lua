@@ -27,6 +27,11 @@ packer.startup(function()
 	-- color
 	use "EdenEast/nightfox.nvim"
 
+	-- lsp
+	use "neovim/nvim-lspconfig"
+	use "williamboman/mason.nvim"
+	use "williamboman/mason-lspconfig"
+
 	-- theme
 	use "kyazdani42/nvim-web-devicons"
 	use "kyazdani42/nvim-tree.lua"
@@ -40,4 +45,28 @@ end)
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup()
+
+-- setups for lsp
+require("mason").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"cssls",
+		"denols",
+		"dockerls",
+		"eslint",
+		"gopls",
+		"html",
+		"tsserver",
+		"sumneko_lua",
+		"marksman",
+		"jedi_language_server",
+		"sqlls",
+		"taplo",
+		"tailwindcss",
+		"terraformls",
+		"yamlls"
+	}
+})
+
+
 
