@@ -32,6 +32,11 @@ packer.startup(function()
 	use "williamboman/mason.nvim"
 	use "williamboman/mason-lspconfig"
 
+	-- autocompletion
+	use "hrsh7th/nvim-cmp"
+	use "hrsh7th/cmp-nvim-lsp"
+	use "hrsh7th/vim-vsnip"
+
 	-- theme
 	use "kyazdani42/nvim-web-devicons"
 	use "kyazdani42/nvim-tree.lua"
@@ -44,7 +49,12 @@ end)
 -- setups for nvim-tree
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+	open_on_setup = true,
+	filters = {
+		custom = {"^\\.git$"},
+	}
+})
 
 -- setups for lsp
 require("mason").setup()
@@ -68,5 +78,21 @@ require("mason-lspconfig").setup({
 	}
 })
 
-
+-- TODO looks like lsp is not working
+-- setups for autocompletion
+local cmp = require "cmp"
+cmp.setup({
+	snippet = {
+		expand = function(args)
+			fn["vsnip#anonymous"](args.body)
+		end,
+	},
+	sources = {
+		{ name = "nvim_lsp" },
+		{ name = "vsnip" },
+	},
+	experimental = {
+		ghost_text = true,
+	},
+})
 
