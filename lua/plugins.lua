@@ -41,6 +41,15 @@ packer.startup(function()
 	use "kyazdani42/nvim-web-devicons"
 	use "kyazdani42/nvim-tree.lua"
 
+	--TODO: install the following plugins
+	--tagbar?
+	--ale?
+	--Hop?
+	--diffview.nvim?
+	--nerdcommenter
+	--indent-blank line
+	--barbar
+
 	-- wakatime
 	use "wakatime/vim-wakatime"
 end)
@@ -51,6 +60,9 @@ vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup({
 	open_on_setup = true,
+	view = {
+		hide_root_folder = true,
+	},
 	filters = {
 		custom = {"^\\.git$"},
 	}
