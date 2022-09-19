@@ -58,25 +58,32 @@ require("nvim-tree").setup({
 
 -- setups for lsp
 require("mason").setup()
-require("mason-lspconfig").setup({
-	ensure_installed = {
-		"cssls",
-		"denols",
-		"dockerls",
-		"eslint",
-		"gopls",
-		"html",
-		"tsserver",
-		"sumneko_lua",
-		"marksman",
-		"jedi_language_server",
-		"sqlls",
-		"taplo",
-		"tailwindcss",
-		"terraformls",
-		"yamlls"
+require("mason-lspconfig").setup_handlers({ function(server)
+	local opt = {
+		automatic_installation = true,
+		ensure_installed = {
+			"cssls",
+			"denols",
+			"dockerls",
+			"eslint",
+			"gopls",
+			"html",
+			"tsserver",
+			"sumneko_lua",
+			"marksman",
+			"jedi_language_server",
+			"sqlls",
+			"taplo",
+			"tailwindcss",
+			"terraformls",
+			"yamlls"
+		},
+		capabilities = require("cmp_nvim_lsp").update_capabilities(
+			vim.lsp.protocol.make_client_capabilities()
+		)
 	}
-})
+	require("lspconfig")[server].setup(opt)
+end })
 
 -- TODO looks like lsp is not working
 -- setups for autocompletion
