@@ -50,6 +50,8 @@ packer.startup(function()
 	use "sindrets/diffview.nvim"
 
 	--nerdcommenter
+	use "preservim/nerdcommenter"
+
 	--indent-blank line
 	--barbar
 
