@@ -45,7 +45,10 @@ packer.startup(function()
 	--tagbar?
 	--ale?
 	--Hop?
-	--diffview.nvim?
+	-- for git diff
+	use "nvim-lua/plenary.nvim"
+	use "sindrets/diffview.nvim"
+
 	--nerdcommenter
 	--indent-blank line
 	--barbar
@@ -97,7 +100,6 @@ require("mason-lspconfig").setup_handlers({ function(server)
 	require("lspconfig")[server].setup(opt)
 end })
 
--- TODO looks like lsp is not working
 -- setups for autocompletion
 local cmp = require "cmp"
 cmp.setup({
