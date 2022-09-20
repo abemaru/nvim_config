@@ -53,12 +53,13 @@ packer.startup(function()
 
 	--indent-blank line
 	use "lukas-reineke/indent-blankline.nvim"
+
 	--barbar
+	use "romgrk/barbar.nvim"
 
 	-- wakatime
 	use "wakatime/vim-wakatime"
 end)
-
 
 -- setups for nvim-tree
 vim.g.loaded = 1
