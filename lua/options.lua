@@ -10,6 +10,9 @@ local options = {
 	incsearch = true,
 	cursorline = true,
 	ttyfast = true,
+	splitright = true,
+	tabstop = 2,
+	shiftwidth = 2,
 }
 
 
