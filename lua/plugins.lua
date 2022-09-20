@@ -41,9 +41,6 @@ packer.startup(function()
 	use "kyazdani42/nvim-web-devicons"
 	use "kyazdani42/nvim-tree.lua"
 
-	--TODO: install the following plugins
-	--ale?
-
 	-- for git diff
 	use "nvim-lua/plenary.nvim"
 	use "sindrets/diffview.nvim"
@@ -115,6 +112,9 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" },
 	},
+	mapping = cmp.mapping.preset.insert({
+		["<Tab>"] = cmp.mapping.select_next_item(),
+	}),
 	experimental = {
 		ghost_text = true,
 	},
@@ -125,3 +125,4 @@ require("indent_blankline").setup({
 	show_current_context = true,
 	show_current_context_start = true,
 })
+
