@@ -42,9 +42,8 @@ packer.startup(function()
 	use "kyazdani42/nvim-tree.lua"
 
 	--TODO: install the following plugins
-	--tagbar?
 	--ale?
-	--Hop?
+
 	-- for git diff
 	use "nvim-lua/plenary.nvim"
 	use "sindrets/diffview.nvim"
@@ -53,6 +52,7 @@ packer.startup(function()
 	use "preservim/nerdcommenter"
 
 	--indent-blank line
+	use "lukas-reineke/indent-blankline.nvim"
 	--barbar
 
 	-- wakatime
@@ -119,3 +119,8 @@ cmp.setup({
 	},
 })
 
+-- setups for indent_blankline
+require("indent_blankline").setup({
+	show_current_context = true,
+	show_current_context_start = true,
+})
