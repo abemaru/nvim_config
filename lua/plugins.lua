@@ -48,6 +48,9 @@ packer.startup(function()
 	--nerdcommenter
 	use "preservim/nerdcommenter"
 
+	-- nvim-treesitter
+	use "nvim-treesitter/nvim-treesitter"
+
 	--indent-blank line
 	use "lukas-reineke/indent-blankline.nvim"
 
@@ -73,26 +76,9 @@ require("nvim-tree").setup({
 
 -- setups for lsp
 require("mason").setup()
+require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers({ function(server)
 	local opt = {
-		automatic_installation = true,
-		ensure_installed = {
-			"cssls",
-			"denols",
-			"dockerls",
-			"eslint",
-			"gopls",
-			"html",
-			"tsserver",
-			"sumneko_lua",
-			"marksman",
-			"jedi_language_server",
-			"sqlls",
-			"taplo",
-			"tailwindcss",
-			"terraformls",
-			"yamlls"
-		},
 		capabilities = require("cmp_nvim_lsp").update_capabilities(
 			vim.lsp.protocol.make_client_capabilities()
 		)
