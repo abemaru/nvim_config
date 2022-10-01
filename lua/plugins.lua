@@ -112,3 +112,12 @@ require("indent_blankline").setup({
 	show_current_context_start = true,
 })
 
+-- setups for treesitter
+require("nvim-treesitter.configs").setup({
+	indent = {
+		enable = true,
+	},
+	highlight = {
+		enable = true,
+	}
+})
