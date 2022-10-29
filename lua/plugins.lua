@@ -59,6 +59,13 @@ packer.startup(function()
 
 	-- wakatime
 	use "wakatime/vim-wakatime"
+
+	-- telescope
+	use "nvim-telescope/telescope.nvim"
+
+	-- flutter
+	use "akinsho/flutter-tools.nvim"
+	use "dart-lang/dart-vim-plugin"
 end)
 
 -- setups for nvim-tree
@@ -121,3 +128,13 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 	}
 })
+
+-- setups for telescope
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+-- setups for flutter
+require("flutter-tools").setup{}
