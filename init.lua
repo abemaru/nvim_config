@@ -1,4 +1,5 @@
 require("base")
+require("mapping")
 require("options")
 require("plugins")
 require("color")
