@@ -64,8 +64,12 @@ packer.startup(function()
 	use "nvim-telescope/telescope.nvim"
 
 	-- flutter
-	use "akinsho/flutter-tools.nvim"
-	use "dart-lang/dart-vim-plugin"
+	use {
+		"akinsho/flutter-tools.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" }
+		}
+	}
 end)
 
 -- setups for nvim-tree
@@ -81,6 +85,29 @@ require("nvim-tree").setup({
 	}
 })
 
+-- setups for flutter
+require("flutter-tools").setup {
+  debugger = {
+    enabled = true,
+  },
+  outline = { auto_open = false },
+  decorations = {
+    statusline = { device = true, app_version = true },
+  },
+  widget_guides = { enabled = true, debug = true },
+  dev_log = { enabled = false, open_cmd = "tabedit" },
+  lsp = {
+    color = {
+      enabled = true,
+      background = true,
+      virtual_text = false,
+    },
+    settings = {
+      showTodos = true,
+      renameFilesWithClasses = "prompt",
+    },
+	}
+}
 -- setups for lsp
 require("mason").setup()
 require("mason-lspconfig").setup()
@@ -106,7 +133,10 @@ cmp.setup({
 		{ name = "vsnip" },
 	},
 	mapping = cmp.mapping.preset.insert({
+		["Down"] = cmp.mapping.select_next_item(),
 		["<Tab>"] = cmp.mapping.select_next_item(),
+		["Up"] = cmp.mapping.select_prev_item(),
+		["<CR>"] = cmp.mapping.confirm { select = true },
 	}),
 	experimental = {
 		ghost_text = true,
@@ -136,5 +166,3 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
--- setups for flutter
-require("flutter-tools").setup{}
