@@ -63,6 +63,12 @@ packer.startup(function()
 	-- telescope
 	use "nvim-telescope/telescope.nvim"
 
+	-- nvim-jqx
+	use "gennaro-tedesco/nvim-jqx"
+
+	-- transparent
+	use "xiyaowong/nvim-transparent"
+
 	-- flutter
 	use {
 		"akinsho/flutter-tools.nvim",
@@ -162,10 +168,29 @@ require("nvim-treesitter.configs").setup({
 	}
 })
 
+
 -- setups for telescope
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+-- setups for nvim-transparent
+require("transparent").setup({
+  enable = true, -- boolean: enable transparent
+  extra_groups = { -- table/string: additional groups that should be cleared
+    -- In particular, when you set it to 'all', that means all available groups
+
+    -- example of akinsho/nvim-bufferline.lua
+    "BufferLineTabClose",
+    "BufferlineBufferSelected",
+    "BufferLineFill",
+    "BufferLineBackground",
+    "BufferLineSeparator",
+    "BufferLineIndicatorSelected",
+  },
+  exclude = {}, -- table: groups you don't want to clear
+  ignore_linked_group = true, -- boolean: don't clear a group that links to another group
+})
 
