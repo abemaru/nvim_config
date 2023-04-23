@@ -82,9 +82,8 @@ end)
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup({
-	open_on_setup = true,
-	view = {
-		hide_root_folder = true,
+	hijack_directories = {
+		auto_open  = true,
 	},
 	filters = {
 		custom = {"^\\.git$"},
@@ -178,7 +177,6 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 -- setups for nvim-transparent
 require("transparent").setup({
-  enable = true, -- boolean: enable transparent
   extra_groups = { -- table/string: additional groups that should be cleared
     -- In particular, when you set it to 'all', that means all available groups
 
@@ -190,7 +188,6 @@ require("transparent").setup({
     "BufferLineSeparator",
     "BufferLineIndicatorSelected",
   },
-  exclude = {}, -- table: groups you don't want to clear
-  ignore_linked_group = true, -- boolean: don't clear a group that links to another group
+  exclude_groups = {}, -- table: groups you don't want to clear
 })
 
